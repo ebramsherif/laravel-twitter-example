@@ -18,6 +18,9 @@ class TweetController extends Controller
     }
     
     public function create(Request $request){
+    	$this->validate($request, [
+        'body' => 'required|max:160'
+        ]);
         $tweet = new Tweet;
         $tweet->user_id = Auth::user()->id;
         $tweet->body = $request->input('body');
